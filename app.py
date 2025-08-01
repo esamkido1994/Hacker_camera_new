@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, send_file
 import os
 import requests
 from dotenv import load_dotenv
@@ -17,8 +17,7 @@ TELEGRAM_API_URL = f"https://api.telegram.org/bot{TOKEN}"
 
 @app.route("/")
 def index():
-    # يعيد ملف index.html من نفس مسار app.py
-    return send_from_directory(directory=os.path.dirname(os.path.abspath(__file__)), filename="index.html")
+    return send_file("index.html")
 
 @app.route("/upload_photo", methods=["POST"])
 def upload_photo():

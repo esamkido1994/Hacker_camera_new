@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import os
 import requests
 from dotenv import load_dotenv
@@ -14,6 +14,10 @@ if not TOKEN or not CHAT_ID:
     raise Exception("يجب ضبط TELEGRAM_BOT_TOKEN و TELEGRAM_CHAT_ID في ملف .env")
 
 TELEGRAM_API_URL = f"https://api.telegram.org/bot{TOKEN}"
+
+@app.route("/")
+def index():
+    return render_template("index.html")
 
 @app.route("/upload_photo", methods=["POST"])
 def upload_photo():
